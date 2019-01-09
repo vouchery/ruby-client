@@ -1,0 +1,11 @@
+# Vouchery::ErrorErrors
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**attribute** | **String** | Attribute name | [optional] 
+**code** | **String** | Machine-readable API error code | [optional] 
+**message** | **String** | Human-readable error message | [optional] 
+**boundary_value** | **String** | Minimum, maximum, or expected value for this attribute | [optional] 
+
+
