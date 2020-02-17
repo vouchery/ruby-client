@@ -1,6 +1,6 @@
 # Vouchery::CategoriesApi
 
-All URIs are relative to *https://preview.vouchery.io/api/v1.0*
+All URIs are relative to *https://preview.vouchery.io/api/v2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,12 +11,15 @@ Method | HTTP request | Description
 [**update_category**](CategoriesApi.md#update_category) | **PATCH** /categories/{id} | Update a category
 
 
-# **create_category**
+
+## create_category
+
 > Category create_category(opts)
 
 Create a category
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -43,6 +46,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **category** | [**Category**](Category.md)|  | [optional] 
@@ -57,17 +61,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## delete_category
 
-# **delete_category**
 > delete_category(id)
 
 Delete a category
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -91,6 +96,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Category ID | 
@@ -105,17 +111,18 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
+## get_categories
 
-# **get_categories**
 > Array&lt;Category&gt; get_categories
 
 Get all categories for a campaign
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -138,6 +145,7 @@ end
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -150,17 +158,18 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_category
 
-# **get_category**
 > Category get_category(id)
 
 Get a category
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -185,6 +194,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Category ID | 
@@ -199,17 +209,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## update_category
 
-# **update_category**
 > Category update_category(id, opts)
 
 Update a category
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -237,6 +248,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Category ID | 
@@ -252,8 +264,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
+- **Content-Type**: application/json
+- **Accept**: application/json
 

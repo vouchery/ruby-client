@@ -1,27 +1,31 @@
 # Vouchery::VouchersApi
 
-All URIs are relative to *https://preview.vouchery.io/api/v1.0*
+All URIs are relative to *https://preview.vouchery.io/api/v2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**batch_generate_vouchers**](VouchersApi.md#batch_generate_vouchers) | **POST** /campaigns/{id}/vouchers/batch | Batch create vouchers
 [**create_voucher**](VouchersApi.md#create_voucher) | **POST** /campaigns/{campaign_id}/vouchers | Create a voucher
-[**delete_voucher**](VouchersApi.md#delete_voucher) | **DELETE** /vouchers/{id} | Delete a voucher
+[**delete_voucher**](VouchersApi.md#delete_voucher) | **DELETE** /vouchers/{code} | Delete a voucher
+[**expire_vouchers**](VouchersApi.md#expire_vouchers) | **POST** /campaigns/vouchers/expire | Expire a list of vouchers
 [**find_voucher**](VouchersApi.md#find_voucher) | **GET** /vouchers/find | Find a voucher by campaign metadata
-[**get_voucher**](VouchersApi.md#get_voucher) | **GET** /vouchers/{id} | Get a voucher
+[**get_voucher**](VouchersApi.md#get_voucher) | **GET** /vouchers/{code} | Get a voucher
 [**get_vouchers**](VouchersApi.md#get_vouchers) | **GET** /campaigns/{campaign_id}/vouchers | Get all vouchers for a campaign
 [**import_vouchers**](VouchersApi.md#import_vouchers) | **POST** /campaigns/{id}/vouchers/import | Import your own vouchers
-[**update_voucher**](VouchersApi.md#update_voucher) | **PATCH** /vouchers/{id} | Update a voucher
+[**update_voucher**](VouchersApi.md#update_voucher) | **PATCH** /vouchers/{code} | Update a voucher
 
 
-# **batch_generate_vouchers**
+
+## batch_generate_vouchers
+
 > Array&lt;Voucher&gt; batch_generate_vouchers(id, opts)
 
 Batch create vouchers
 
- <p>Generate a batch of unique vouchers. Each voucher will be created using <code>{prefix}-{random code}</code> format where code will be a random string of requested type and length. <strong>A prefix needs to be unique within a project.</strong></p> <p> Following code types are supported: <ul> <li>digits</li> <li>letters</li> <li>mixed (digits and letters)</li> </ul> </p> <p>Allowed characters for each code type have been filtered to avoid typing mistakes. Maximum number of codes possible to generate in one batch request is 500 000.</p>
+ <p>Generate a batch of unique vouchers. Each voucher will be created using <code>{prefix}-{random code}</code> format where code will be a random string of requested type and length. <strong>A prefix needs to be unique within a project.</strong></p> <p> Following code types are supported: <ul> <li>digits</li> <li>letters</li> <li>mixed (digits and letters)</li> </ul> </p> <p>Allowed characters for each code type have been filtered to avoid typing mistakes. Maximum number of codes possible to generate in one batch request is 50 000.</p>
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -49,6 +53,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Campaign ID | 
@@ -64,17 +69,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## create_voucher
 
-# **create_voucher**
 > Voucher create_voucher(campaign_id, opts)
 
 Create a voucher
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -102,6 +108,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **campaign_id** | **Integer**| Campaign ID | 
@@ -117,19 +124,20 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## delete_voucher
 
-# **delete_voucher**
-> delete_voucher(id)
+> delete_voucher(code)
 
 Delete a voucher
 
 Delete a single voucher. Vouchers with at least one confirmed redemption can not be deleted.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -141,11 +149,11 @@ Vouchery.configure do |config|
 end
 
 api_instance = Vouchery::VouchersApi.new
-id = 56 # Integer | Voucher ID
+code = 'code_example' # String | Voucher code
 
 begin
   #Delete a voucher
-  api_instance.delete_voucher(id)
+  api_instance.delete_voucher(code)
 rescue Vouchery::ApiError => e
   puts "Exception when calling VouchersApi->delete_voucher: #{e}"
 end
@@ -153,9 +161,10 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Voucher ID | 
+ **code** | **String**| Voucher code | 
 
 ### Return type
 
@@ -167,19 +176,74 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
+## expire_vouchers
 
-# **find_voucher**
+> expire_vouchers(opts)
+
+Expire a list of vouchers
+
+Given a list of voucher codes, change their status to expired, unless they have been redeemed.
+
+### Example
+
+```ruby
+# load the gem
+require 'vouchery_client'
+# setup authorization
+Vouchery.configure do |config|
+  # Configure HTTP basic authorization: Basic
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = Vouchery::VouchersApi.new
+opts = {
+  inline_object4: Vouchery::InlineObject4.new # InlineObject4 | 
+}
+
+begin
+  #Expire a list of vouchers
+  api_instance.expire_vouchers(opts)
+rescue Vouchery::ApiError => e
+  puts "Exception when calling VouchersApi->expire_vouchers: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inline_object4** | [**InlineObject4**](InlineObject4.md)|  | [optional] 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+
+## find_voucher
+
 > Voucher find_voucher(opts)
 
 Find a voucher by campaign metadata
 
-<p>Find voucher by campaign metadata.</p> <p>   Optionally assign found voucher to a customer by passing customer_identifier param.   All vouchers for a customer can be fetched at <a href=\"#get_customers-identifier-vouchers\">/customers/{id}/vouchers</a>. </p> <p>If no voucher is available this endpoint will return an empty response and HTTP code <code>204 No content</code></p> 
+<p>Find voucher by campaign metadata.</p> <p>   Optionally assign found voucher to a customer by passing customer_identifier param.   All vouchers for a customer can be fetched at <a href=\"#get_customers-identifier-vouchers\">/customers/{id}/vouchers</a>. </p> <p>If no voucher is available this endpoint will return an empty response and HTTP code <code>204 No content</code></p> <p>At least one metadata must be provided, otherwise no voucher will be returned.</p> 
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -193,6 +257,9 @@ end
 api_instance = Vouchery::VouchersApi.new
 opts = {
   medium: ['medium_example'], # Array<String> | 
+  purpose: ['purpose_example'], # Array<String> | 
+  team: ['team_example'], # Array<String> | 
+  channel: ['channel_example'], # Array<String> | 
   customer_identifier: 'customer_identifier_example' # String | \"Assign found voucher to a customer with this identifier. Will create customer if not present. Optional.\"
 }
 
@@ -207,9 +274,13 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **medium** | [**Array&lt;String&gt;**](String.md)|  | [optional] 
+ **purpose** | [**Array&lt;String&gt;**](String.md)|  | [optional] 
+ **team** | [**Array&lt;String&gt;**](String.md)|  | [optional] 
+ **channel** | [**Array&lt;String&gt;**](String.md)|  | [optional] 
  **customer_identifier** | **String**| \&quot;Assign found voucher to a customer with this identifier. Will create customer if not present. Optional.\&quot; | [optional] 
 
 ### Return type
@@ -222,17 +293,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_voucher
 
-# **get_voucher**
-> Voucher get_voucher(id)
+> Voucher get_voucher(code)
 
 Get a voucher
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -244,11 +316,11 @@ Vouchery.configure do |config|
 end
 
 api_instance = Vouchery::VouchersApi.new
-id = 56 # Integer | Voucher ID
+code = 'code_example' # String | Voucher code
 
 begin
   #Get a voucher
-  result = api_instance.get_voucher(id)
+  result = api_instance.get_voucher(code)
   p result
 rescue Vouchery::ApiError => e
   puts "Exception when calling VouchersApi->get_voucher: #{e}"
@@ -257,9 +329,10 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Voucher ID | 
+ **code** | **String**| Voucher code | 
 
 ### Return type
 
@@ -271,17 +344,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_vouchers
 
-# **get_vouchers**
 > Array&lt;Voucher&gt; get_vouchers(campaign_id)
 
 Get all vouchers for a campaign
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -306,6 +380,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **campaign_id** | **Integer**| Campaign ID | 
@@ -320,19 +395,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## import_vouchers
 
-# **import_vouchers**
 > InlineResponse200 import_vouchers(id, opts)
 
 Import your own vouchers
 
- <p>Generate a batch of unique vouchers. Each voucher will be created using <code>{prefix}-{random code}</code> format where code will be a random string of requested type and length. <strong>A prefix needs to be unique within a project.</strong></p> <p> Following code types are supported: <ul> <li>digits</li> <li>letters</li> <li>mixed (digits and letters)</li> </ul> </p> <p>Allowed characters for each code type have been filtered to avoid typing mistakes. Maximum number of codes possible to generate in one batch request is 500 000.</p>
-
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -346,7 +420,7 @@ end
 api_instance = Vouchery::VouchersApi.new
 id = 56 # Integer | Campaign ID
 opts = {
-  body: File.new('/path/to/file') # File | 
+  file: File.new('/path/to/file') # File | 
 }
 
 begin
@@ -360,10 +434,11 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Campaign ID | 
- **body** | **File**|  | [optional] 
+ **file** | **File**|  | [optional] 
 
 ### Return type
 
@@ -375,19 +450,20 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: text/csv
- - **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
 
 
+## update_voucher
 
-# **update_voucher**
-> Voucher update_voucher(id, opts)
+> Voucher update_voucher(code, opts)
 
 Update a voucher
 
-Vouchers with at least one confirmed redemption can not be changed.
+Only voucher status can be updated.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -399,14 +475,14 @@ Vouchery.configure do |config|
 end
 
 api_instance = Vouchery::VouchersApi.new
-id = 56 # Integer | Voucher ID
+code = 'code_example' # String | Voucher code
 opts = {
   voucher: Vouchery::Voucher.new # Voucher | 
 }
 
 begin
   #Update a voucher
-  result = api_instance.update_voucher(id, opts)
+  result = api_instance.update_voucher(code, opts)
   p result
 rescue Vouchery::ApiError => e
   puts "Exception when calling VouchersApi->update_voucher: #{e}"
@@ -415,9 +491,10 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Voucher ID | 
+ **code** | **String**| Voucher code | 
  **voucher** | [**Voucher**](Voucher.md)|  | [optional] 
 
 ### Return type
@@ -430,8 +507,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
+- **Content-Type**: application/json
+- **Accept**: application/json
 

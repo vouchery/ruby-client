@@ -1,6 +1,6 @@
 # Vouchery::RedemptionsApi
 
-All URIs are relative to *https://preview.vouchery.io/api/v1.0*
+All URIs are relative to *https://preview.vouchery.io/api/v2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,12 +11,15 @@ Method | HTTP request | Description
 [**get_redemptions**](RedemptionsApi.md#get_redemptions) | **GET** /campaigns/{campaign_id}/redemptions | Get all redemptions for a campaign
 
 
-# **confirm_redemption**
+
+## confirm_redemption
+
 > Redemption confirm_redemption(code, transaction_id)
 
 Confirm a redemption
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -42,6 +45,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **String**| Voucher code | 
@@ -57,17 +61,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## create_redemption
 
-# **create_redemption**
 > Redemption create_redemption(code, opts)
 
 Create a redemption
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -95,6 +100,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **String**| Voucher code | 
@@ -110,17 +116,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## delete_redemption
 
-# **delete_redemption**
 > delete_redemption(code, transaction_id)
 
 Delete a redemption
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -145,6 +152,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **String**| Voucher code | 
@@ -160,17 +168,18 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
+## get_redemption
 
-# **get_redemption**
 > Redemption get_redemption(code, transaction_id)
 
 Get a redemption
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -196,6 +205,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **String**| Voucher code | 
@@ -211,17 +221,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_redemptions
 
-# **get_redemptions**
 > Array&lt;Redemption&gt; get_redemptions(campaign_id)
 
 Get all redemptions for a campaign
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -246,6 +257,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **campaign_id** | **Integer**| Campaign ID | 
@@ -260,8 +272,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 

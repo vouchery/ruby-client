@@ -1,22 +1,26 @@
 # Vouchery::CampaignsApi
 
-All URIs are relative to *https://preview.vouchery.io/api/v1.0*
+All URIs are relative to *https://preview.vouchery.io/api/v2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_campaign**](CampaignsApi.md#create_campaign) | **POST** /campaigns | Create a campaign
 [**delete_campaign**](CampaignsApi.md#delete_campaign) | **DELETE** /campaigns/{id} | Delete a campaign
+[**find_sub_campaigns**](CampaignsApi.md#find_sub_campaigns) | **GET** /campaigns/sub | Get sub campaigns by params
 [**get_campaign**](CampaignsApi.md#get_campaign) | **GET** /campaigns/{id} | Get a campaign
-[**get_campaigns**](CampaignsApi.md#get_campaigns) | **GET** /campaigns | Get all campaigns
+[**get_campaigns**](CampaignsApi.md#get_campaigns) | **GET** /campaigns | Get main campaigns with children by params
 [**update_campaign**](CampaignsApi.md#update_campaign) | **PATCH** /campaigns/{id} | Update a campaign
 
 
-# **create_campaign**
+
+## create_campaign
+
 > Campaign create_campaign(opts)
 
 Create a campaign
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -43,6 +47,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **campaign** | [**Campaign**](Campaign.md)|  | [optional] 
@@ -57,17 +62,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## delete_campaign
 
-# **delete_campaign**
 > delete_campaign(id)
 
 Delete a campaign
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -91,6 +97,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Campaign ID | 
@@ -105,17 +112,79 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
+## find_sub_campaigns
 
-# **get_campaign**
+> Array&lt;Campaign&gt; find_sub_campaigns(opts)
+
+Get sub campaigns by params
+
+### Example
+
+```ruby
+# load the gem
+require 'vouchery_client'
+# setup authorization
+Vouchery.configure do |config|
+  # Configure HTTP basic authorization: Basic
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = Vouchery::CampaignsApi.new
+opts = {
+  name_cont: 'name_cont_example', # String | Name contains
+  status_eq: 'status_eq_example', # String | Status
+  template_eq: 'template_eq_example', # String | Template (type) of sub campaign
+  triggers_on_eq: 'triggers_on_eq_example', # String | Triggers On
+  trigger_name_cont: 'trigger_name_cont_example' # String | Trigger Name contains
+}
+
+begin
+  #Get sub campaigns by params
+  result = api_instance.find_sub_campaigns(opts)
+  p result
+rescue Vouchery::ApiError => e
+  puts "Exception when calling CampaignsApi->find_sub_campaigns: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_cont** | **String**| Name contains | [optional] 
+ **status_eq** | **String**| Status | [optional] 
+ **template_eq** | **String**| Template (type) of sub campaign | [optional] 
+ **triggers_on_eq** | **String**| Triggers On | [optional] 
+ **trigger_name_cont** | **String**| Trigger Name contains | [optional] 
+
+### Return type
+
+[**Array&lt;Campaign&gt;**](Campaign.md)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_campaign
+
 > Campaign get_campaign(id)
 
 Get a campaign
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -140,6 +209,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Campaign ID | 
@@ -154,17 +224,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_campaigns
 
-# **get_campaigns**
-> Array&lt;Campaign&gt; get_campaigns
+> Array&lt;Campaign&gt; get_campaigns(opts)
 
-Get all campaigns
+Get main campaigns with children by params
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -176,10 +247,16 @@ Vouchery.configure do |config|
 end
 
 api_instance = Vouchery::CampaignsApi.new
+opts = {
+  name_cont: 'name_cont_example', # String | Name contains
+  team_eq: 'team_eq_example', # String | Team
+  status_eq: 'status_eq_example', # String | Status
+  template_eq: 'template_eq_example' # String | Template (promotion type) of main campaign
+}
 
 begin
-  #Get all campaigns
-  result = api_instance.get_campaigns
+  #Get main campaigns with children by params
+  result = api_instance.get_campaigns(opts)
   p result
 rescue Vouchery::ApiError => e
   puts "Exception when calling CampaignsApi->get_campaigns: #{e}"
@@ -187,7 +264,14 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_cont** | **String**| Name contains | [optional] 
+ **team_eq** | **String**| Team | [optional] 
+ **status_eq** | **String**| Status | [optional] 
+ **template_eq** | **String**| Template (promotion type) of main campaign | [optional] 
 
 ### Return type
 
@@ -199,17 +283,18 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## update_campaign
 
-# **update_campaign**
 > Campaign update_campaign(id, opts)
 
 Update a campaign
 
 ### Example
+
 ```ruby
 # load the gem
 require 'vouchery_client'
@@ -237,6 +322,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Campaign ID | 
@@ -252,8 +338,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
+- **Content-Type**: application/json
+- **Accept**: application/json
 
