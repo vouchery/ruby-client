@@ -13,18 +13,24 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module Vouchery
-  class ErrorErrors
-    # Attribute name
-    attr_accessor :attribute
+  class Project
+    attr_accessor :type
 
-    # Machine-readable API error code
-    attr_accessor :code
+    attr_accessor :name
 
-    # Human-readable error message
-    attr_accessor :message
+    attr_accessor :subdomain
 
-    # Minimum, maximum, or expected value for this attribute
-    attr_accessor :boundary_value
+    attr_accessor :currency
+
+    attr_accessor :currency_symbol
+
+    attr_accessor :time_zone
+
+    attr_accessor :logo_url
+
+    attr_accessor :created_at
+
+    attr_accessor :updated_at
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -51,26 +57,37 @@ module Vouchery
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'attribute' => :'attribute',
-        :'code' => :'code',
-        :'message' => :'message',
-        :'boundary_value' => :'boundary_value'
+        :'type' => :'type',
+        :'name' => :'name',
+        :'subdomain' => :'subdomain',
+        :'currency' => :'currency',
+        :'currency_symbol' => :'currency_symbol',
+        :'time_zone' => :'time_zone',
+        :'logo_url' => :'logo_url',
+        :'created_at' => :'created_at',
+        :'updated_at' => :'updated_at'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'attribute' => :'String',
-        :'code' => :'String',
-        :'message' => :'String',
-        :'boundary_value' => :'String'
+        :'type' => :'String',
+        :'name' => :'String',
+        :'subdomain' => :'String',
+        :'currency' => :'String',
+        :'currency_symbol' => :'String',
+        :'time_zone' => :'String',
+        :'logo_url' => :'String',
+        :'created_at' => :'DateTime',
+        :'updated_at' => :'DateTime'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'logo_url',
       ])
     end
 
@@ -78,31 +95,51 @@ module Vouchery
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::ErrorErrors` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::Project` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::ErrorErrors`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::Project`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'attribute')
-        self.attribute = attributes[:'attribute']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'code')
-        self.code = attributes[:'code']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.key?(:'subdomain')
+        self.subdomain = attributes[:'subdomain']
       end
 
-      if attributes.key?(:'boundary_value')
-        self.boundary_value = attributes[:'boundary_value']
+      if attributes.key?(:'currency')
+        self.currency = attributes[:'currency']
+      end
+
+      if attributes.key?(:'currency_symbol')
+        self.currency_symbol = attributes[:'currency_symbol']
+      end
+
+      if attributes.key?(:'time_zone')
+        self.time_zone = attributes[:'time_zone']
+      end
+
+      if attributes.key?(:'logo_url')
+        self.logo_url = attributes[:'logo_url']
+      end
+
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
     end
 
@@ -110,25 +147,40 @@ module Vouchery
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @currency.nil?
+        invalid_properties.push('invalid value for "currency", currency cannot be nil.')
+      end
+
+      if @time_zone.nil?
+        invalid_properties.push('invalid value for "time_zone", time_zone cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      code_validator = EnumAttributeValidator.new('String', ["required", "below_minimum", "above_maximum", "unexpected_value", "must_be_unique", "should_match_confirmation", "must_be_accepted", "must_be_null", "too_short", "too_long", "wrong_length", "invalid", "invalid_date", "invalid_time", "invalid_datetime", "not_allowed_to_have_vouchers", "already_confirmed", "expired", "missing_required_tags", "includes_forbidden_tags", "missing_required_category", "outside_of_permitted_areas", "not_valid_at_this_time", "maximum_redemptions_exceeded", "budget_exceeded", "new_customer_required", "per_customer_limit_exceeded", "time_limit_expired", "redemptions_limit_exceeded", "below_campaign_minimum", "unknown_tags", "does_not_match_assigned_customer", "not_active", "unique_code_already_used", "not_match", "can_not_expire_redeemed"])
-      return false unless code_validator.valid?(@code)
+      type_validator = EnumAttributeValidator.new('String', ["Project"])
+      return false unless type_validator.valid?(@type)
+      return false if @name.nil?
+      return false if @currency.nil?
+      return false if @time_zone.nil?
       true
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] code Object to be assigned
-    def code=(code)
-      validator = EnumAttributeValidator.new('String', ["required", "below_minimum", "above_maximum", "unexpected_value", "must_be_unique", "should_match_confirmation", "must_be_accepted", "must_be_null", "too_short", "too_long", "wrong_length", "invalid", "invalid_date", "invalid_time", "invalid_datetime", "not_allowed_to_have_vouchers", "already_confirmed", "expired", "missing_required_tags", "includes_forbidden_tags", "missing_required_category", "outside_of_permitted_areas", "not_valid_at_this_time", "maximum_redemptions_exceeded", "budget_exceeded", "new_customer_required", "per_customer_limit_exceeded", "time_limit_expired", "redemptions_limit_exceeded", "below_campaign_minimum", "unknown_tags", "does_not_match_assigned_customer", "not_active", "unique_code_already_used", "not_match", "can_not_expire_redeemed"])
-      unless validator.valid?(code)
-        fail ArgumentError, "invalid value for \"code\", must be one of #{validator.allowable_values}."
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["Project"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
-      @code = code
+      @type = type
     end
 
     # Checks equality by comparing each attribute.
@@ -136,10 +188,15 @@ module Vouchery
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          attribute == o.attribute &&
-          code == o.code &&
-          message == o.message &&
-          boundary_value == o.boundary_value
+          type == o.type &&
+          name == o.name &&
+          subdomain == o.subdomain &&
+          currency == o.currency &&
+          currency_symbol == o.currency_symbol &&
+          time_zone == o.time_zone &&
+          logo_url == o.logo_url &&
+          created_at == o.created_at &&
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -151,7 +208,7 @@ module Vouchery
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [attribute, code, message, boundary_value].hash
+      [type, name, subdomain, currency, currency_symbol, time_zone, logo_url, created_at, updated_at].hash
     end
 
     # Builds the object from hash

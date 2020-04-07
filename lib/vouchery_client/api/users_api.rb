@@ -19,23 +19,23 @@ module Vouchery
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Get all users within a project
+    # Get information about current user and project
     # @param [Hash] opts the optional parameters
-    # @return [Array<User>]
-    def get_users(opts = {})
-      data, _status_code, _headers = get_users_with_http_info(opts)
+    # @return [InlineResponse2001]
+    def get_me(opts = {})
+      data, _status_code, _headers = get_me_with_http_info(opts)
       data
     end
 
-    # Get all users within a project
+    # Get information about current user and project
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<User>, Integer, Hash)>] Array<User> data, response status code and response headers
-    def get_users_with_http_info(opts = {})
+    # @return [Array<(InlineResponse2001, Integer, Hash)>] InlineResponse2001 data, response status code and response headers
+    def get_me_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UsersApi.get_users ...'
+        @api_client.config.logger.debug 'Calling API: UsersApi.get_me ...'
       end
       # resource path
-      local_var_path = '/users'
+      local_var_path = '/me'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -52,10 +52,130 @@ module Vouchery
       post_body = opts[:body] 
 
       # return_type
+      return_type = opts[:return_type] || 'InlineResponse2001' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['Bearer']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: UsersApi#get_me\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get a user
+    # @param email [String] User email
+    # @param [Hash] opts the optional parameters
+    # @return [User]
+    def get_user(email, opts = {})
+      data, _status_code, _headers = get_user_with_http_info(email, opts)
+      data
+    end
+
+    # Get a user
+    # @param email [String] User email
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(User, Integer, Hash)>] User data, response status code and response headers
+    def get_user_with_http_info(email, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: UsersApi.get_user ...'
+      end
+      # verify the required parameter 'email' is set
+      if @api_client.config.client_side_validation && email.nil?
+        fail ArgumentError, "Missing the required parameter 'email' when calling UsersApi.get_user"
+      end
+      # resource path
+      local_var_path = '/users/{email}'.sub('{' + 'email' + '}', CGI.escape(email.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'User' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['Bearer']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: UsersApi#get_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get all users within a project
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page Result page (indexed from 1)
+    # @option opts [Integer] :per_page Results per page
+    # @return [Array<User>]
+    def get_users(opts = {})
+      data, _status_code, _headers = get_users_with_http_info(opts)
+      data
+    end
+
+    # Get all users within a project
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page Result page (indexed from 1)
+    # @option opts [Integer] :per_page Results per page
+    # @return [Array<(Array<User>, Integer, Hash)>] Array<User> data, response status code and response headers
+    def get_users_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: UsersApi.get_users ...'
+      end
+      # resource path
+      local_var_path = '/users'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
       return_type = opts[:return_type] || 'Array<User>' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -69,6 +189,70 @@ module Vouchery
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: UsersApi#get_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update a user
+    # @param email [String] User email
+    # @param [Hash] opts the optional parameters
+    # @option opts [User] :user 
+    # @return [User]
+    def update_user(email, opts = {})
+      data, _status_code, _headers = update_user_with_http_info(email, opts)
+      data
+    end
+
+    # Update a user
+    # @param email [String] User email
+    # @param [Hash] opts the optional parameters
+    # @option opts [User] :user 
+    # @return [Array<(User, Integer, Hash)>] User data, response status code and response headers
+    def update_user_with_http_info(email, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: UsersApi.update_user ...'
+      end
+      # verify the required parameter 'email' is set
+      if @api_client.config.client_side_validation && email.nil?
+        fail ArgumentError, "Missing the required parameter 'email' when calling UsersApi.update_user"
+      end
+      # resource path
+      local_var_path = '/users/{email}'.sub('{' + 'email' + '}', CGI.escape(email.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] || @api_client.object_to_http_body(opts[:'user']) 
+
+      # return_type
+      return_type = opts[:return_type] || 'User' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['Bearer']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: UsersApi#update_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

@@ -1,18 +1,18 @@
-# Vouchery::TriggersApi
+# Vouchery::CompanyApi
 
 All URIs are relative to *https://preview.vouchery.io/api/v2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_trigger**](TriggersApi.md#create_trigger) | **POST** /triggers | Create a trigger
+[**update_company**](CompanyApi.md#update_company) | **PATCH** /company | Update company details
 
 
 
-## create_trigger
+## update_company
 
-> Trigger create_trigger(opts)
+> Company update_company(opts)
 
-Create a trigger
+Update company details
 
 ### Example
 
@@ -25,17 +25,17 @@ Vouchery.configure do |config|
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
-api_instance = Vouchery::TriggersApi.new
+api_instance = Vouchery::CompanyApi.new
 opts = {
-  trigger: Vouchery::Trigger.new # Trigger | 
+  company: Vouchery::Company.new # Company | 
 }
 
 begin
-  #Create a trigger
-  result = api_instance.create_trigger(opts)
+  #Update company details
+  result = api_instance.update_company(opts)
   p result
 rescue Vouchery::ApiError => e
-  puts "Exception when calling TriggersApi->create_trigger: #{e}"
+  puts "Exception when calling CompanyApi->update_company: #{e}"
 end
 ```
 
@@ -44,11 +44,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trigger** | [**Trigger**](Trigger.md)|  | [optional] 
+ **company** | [**Company**](Company.md)|  | [optional] 
 
 ### Return type
 
-[**Trigger**](Trigger.md)
+[**Company**](Company.md)
 
 ### Authorization
 

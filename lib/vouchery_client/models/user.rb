@@ -30,6 +30,10 @@ module Vouchery
 
     attr_accessor :active
 
+    attr_accessor :masked_api_key
+
+    attr_accessor :last_sign_in_at
+
     attr_accessor :created_at
 
     attr_accessor :updated_at
@@ -67,6 +71,8 @@ module Vouchery
         :'role' => :'role',
         :'access_scope' => :'access_scope',
         :'active' => :'active',
+        :'masked_api_key' => :'masked_api_key',
+        :'last_sign_in_at' => :'last_sign_in_at',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at'
       }
@@ -83,6 +89,8 @@ module Vouchery
         :'role' => :'String',
         :'access_scope' => :'String',
         :'active' => :'Boolean',
+        :'masked_api_key' => :'String',
+        :'last_sign_in_at' => :'DateTime',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime'
       }
@@ -93,6 +101,8 @@ module Vouchery
       Set.new([
         :'name',
         :'team',
+        :'masked_api_key',
+        :'last_sign_in_at',
       ])
     end
 
@@ -141,6 +151,14 @@ module Vouchery
 
       if attributes.key?(:'active')
         self.active = attributes[:'active']
+      end
+
+      if attributes.key?(:'masked_api_key')
+        self.masked_api_key = attributes[:'masked_api_key']
+      end
+
+      if attributes.key?(:'last_sign_in_at')
+        self.last_sign_in_at = attributes[:'last_sign_in_at']
       end
 
       if attributes.key?(:'created_at')
@@ -229,6 +247,8 @@ module Vouchery
           role == o.role &&
           access_scope == o.access_scope &&
           active == o.active &&
+          masked_api_key == o.masked_api_key &&
+          last_sign_in_at == o.last_sign_in_at &&
           created_at == o.created_at &&
           updated_at == o.updated_at
     end
@@ -242,7 +262,7 @@ module Vouchery
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, id, name, email, team, role, access_scope, active, created_at, updated_at].hash
+      [type, id, name, email, team, role, access_scope, active, masked_api_key, last_sign_in_at, created_at, updated_at].hash
     end
 
     # Builds the object from hash

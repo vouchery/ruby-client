@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**find_sub_campaigns**](CampaignsApi.md#find_sub_campaigns) | **GET** /campaigns/sub | Get sub campaigns by params
 [**get_campaign**](CampaignsApi.md#get_campaign) | **GET** /campaigns/{id} | Get a campaign
 [**get_campaigns**](CampaignsApi.md#get_campaigns) | **GET** /campaigns | Get main campaigns with children by params
+[**get_main_campaign**](CampaignsApi.md#get_main_campaign) | **GET** /main_campaigns/{id} | Get a main campaign
+[**get_main_campaigns**](CampaignsApi.md#get_main_campaigns) | **GET** /main_campaigns | Get main campaigns with children by params
 [**update_campaign**](CampaignsApi.md#update_campaign) | **PATCH** /campaigns/{id} | Update a campaign
 
 
@@ -26,9 +28,8 @@ Create a campaign
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CampaignsApi.new
@@ -58,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -79,9 +80,8 @@ Delete a campaign
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CampaignsApi.new
@@ -108,7 +108,7 @@ nil (empty response body)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -129,9 +129,8 @@ Get sub campaigns by params
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CampaignsApi.new
@@ -169,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -190,9 +189,8 @@ Get a campaign
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CampaignsApi.new
@@ -220,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -241,9 +239,8 @@ Get main campaigns with children by params
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CampaignsApi.new
@@ -279,7 +276,115 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_main_campaign
+
+> MainCampaign get_main_campaign(id)
+
+Get a main campaign
+
+### Example
+
+```ruby
+# load the gem
+require 'vouchery_client'
+# setup authorization
+Vouchery.configure do |config|
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Vouchery::CampaignsApi.new
+id = 56 # Integer | Campaign ID
+
+begin
+  #Get a main campaign
+  result = api_instance.get_main_campaign(id)
+  p result
+rescue Vouchery::ApiError => e
+  puts "Exception when calling CampaignsApi->get_main_campaign: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Integer**| Campaign ID | 
+
+### Return type
+
+[**MainCampaign**](MainCampaign.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_main_campaigns
+
+> Array&lt;MainCampaign&gt; get_main_campaigns(opts)
+
+Get main campaigns with children by params
+
+### Example
+
+```ruby
+# load the gem
+require 'vouchery_client'
+# setup authorization
+Vouchery.configure do |config|
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Vouchery::CampaignsApi.new
+opts = {
+  name_cont: 'name_cont_example', # String | Name contains
+  team_eq: 'team_eq_example', # String | Teaml
+  status_eq: 'status_eq_example', # String | Status
+  template_eq: 'template_eq_example' # String | Template (promotion type) of main campaign
+}
+
+begin
+  #Get main campaigns with children by params
+  result = api_instance.get_main_campaigns(opts)
+  p result
+rescue Vouchery::ApiError => e
+  puts "Exception when calling CampaignsApi->get_main_campaigns: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_cont** | **String**| Name contains | [optional] 
+ **team_eq** | **String**| Teaml | [optional] 
+ **status_eq** | **String**| Status | [optional] 
+ **template_eq** | **String**| Template (promotion type) of main campaign | [optional] 
+
+### Return type
+
+[**Array&lt;MainCampaign&gt;**](MainCampaign.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -300,9 +405,8 @@ Update a campaign
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CampaignsApi.new
@@ -334,7 +438,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 

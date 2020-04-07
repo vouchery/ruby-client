@@ -25,9 +25,8 @@ Create a reward
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::RewardsApi.new
@@ -59,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -80,9 +79,8 @@ Delete a reward
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::RewardsApi.new
@@ -109,7 +107,7 @@ nil (empty response body)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -130,9 +128,8 @@ Get a reward
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::RewardsApi.new
@@ -160,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -181,9 +178,8 @@ Get all rewards for a campaign
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::RewardsApi.new
@@ -211,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -232,9 +228,8 @@ Update a reward
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::RewardsApi.new
@@ -266,7 +261,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 

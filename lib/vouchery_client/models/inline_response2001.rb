@@ -13,58 +13,28 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module Vouchery
-  class ErrorErrors
-    # Attribute name
-    attr_accessor :attribute
+  class InlineResponse2001
+    attr_accessor :user
 
-    # Machine-readable API error code
-    attr_accessor :code
+    attr_accessor :project
 
-    # Human-readable error message
-    attr_accessor :message
-
-    # Minimum, maximum, or expected value for this attribute
-    attr_accessor :boundary_value
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :company
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'attribute' => :'attribute',
-        :'code' => :'code',
-        :'message' => :'message',
-        :'boundary_value' => :'boundary_value'
+        :'user' => :'user',
+        :'project' => :'project',
+        :'company' => :'company'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'attribute' => :'String',
-        :'code' => :'String',
-        :'message' => :'String',
-        :'boundary_value' => :'String'
+        :'user' => :'User',
+        :'project' => :'Hash<String, Object>',
+        :'company' => :'Hash<String, Object>'
       }
     end
 
@@ -78,31 +48,31 @@ module Vouchery
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::ErrorErrors` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::InlineResponse2001` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::ErrorErrors`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::InlineResponse2001`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'attribute')
-        self.attribute = attributes[:'attribute']
+      if attributes.key?(:'user')
+        self.user = attributes[:'user']
       end
 
-      if attributes.key?(:'code')
-        self.code = attributes[:'code']
+      if attributes.key?(:'project')
+        if (value = attributes[:'project']).is_a?(Hash)
+          self.project = value
+        end
       end
 
-      if attributes.key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.key?(:'boundary_value')
-        self.boundary_value = attributes[:'boundary_value']
+      if attributes.key?(:'company')
+        if (value = attributes[:'company']).is_a?(Hash)
+          self.company = value
+        end
       end
     end
 
@@ -116,19 +86,7 @@ module Vouchery
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      code_validator = EnumAttributeValidator.new('String', ["required", "below_minimum", "above_maximum", "unexpected_value", "must_be_unique", "should_match_confirmation", "must_be_accepted", "must_be_null", "too_short", "too_long", "wrong_length", "invalid", "invalid_date", "invalid_time", "invalid_datetime", "not_allowed_to_have_vouchers", "already_confirmed", "expired", "missing_required_tags", "includes_forbidden_tags", "missing_required_category", "outside_of_permitted_areas", "not_valid_at_this_time", "maximum_redemptions_exceeded", "budget_exceeded", "new_customer_required", "per_customer_limit_exceeded", "time_limit_expired", "redemptions_limit_exceeded", "below_campaign_minimum", "unknown_tags", "does_not_match_assigned_customer", "not_active", "unique_code_already_used", "not_match", "can_not_expire_redeemed"])
-      return false unless code_validator.valid?(@code)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] code Object to be assigned
-    def code=(code)
-      validator = EnumAttributeValidator.new('String', ["required", "below_minimum", "above_maximum", "unexpected_value", "must_be_unique", "should_match_confirmation", "must_be_accepted", "must_be_null", "too_short", "too_long", "wrong_length", "invalid", "invalid_date", "invalid_time", "invalid_datetime", "not_allowed_to_have_vouchers", "already_confirmed", "expired", "missing_required_tags", "includes_forbidden_tags", "missing_required_category", "outside_of_permitted_areas", "not_valid_at_this_time", "maximum_redemptions_exceeded", "budget_exceeded", "new_customer_required", "per_customer_limit_exceeded", "time_limit_expired", "redemptions_limit_exceeded", "below_campaign_minimum", "unknown_tags", "does_not_match_assigned_customer", "not_active", "unique_code_already_used", "not_match", "can_not_expire_redeemed"])
-      unless validator.valid?(code)
-        fail ArgumentError, "invalid value for \"code\", must be one of #{validator.allowable_values}."
-      end
-      @code = code
     end
 
     # Checks equality by comparing each attribute.
@@ -136,10 +94,9 @@ module Vouchery
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          attribute == o.attribute &&
-          code == o.code &&
-          message == o.message &&
-          boundary_value == o.boundary_value
+          user == o.user &&
+          project == o.project &&
+          company == o.company
     end
 
     # @see the `==` method
@@ -151,7 +108,7 @@ module Vouchery
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [attribute, code, message, boundary_value].hash
+      [user, project, company].hash
     end
 
     # Builds the object from hash

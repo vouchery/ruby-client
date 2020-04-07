@@ -1,18 +1,18 @@
-# Vouchery::TriggersApi
+# Vouchery::ProjectsApi
 
 All URIs are relative to *https://preview.vouchery.io/api/v2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_trigger**](TriggersApi.md#create_trigger) | **POST** /triggers | Create a trigger
+[**update_project**](ProjectsApi.md#update_project) | **PATCH** /project | Update project settings
 
 
 
-## create_trigger
+## update_project
 
-> Trigger create_trigger(opts)
+> Project update_project(opts)
 
-Create a trigger
+Update project settings
 
 ### Example
 
@@ -25,17 +25,17 @@ Vouchery.configure do |config|
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
-api_instance = Vouchery::TriggersApi.new
+api_instance = Vouchery::ProjectsApi.new
 opts = {
-  trigger: Vouchery::Trigger.new # Trigger | 
+  project: Vouchery::Project.new # Project | 
 }
 
 begin
-  #Create a trigger
-  result = api_instance.create_trigger(opts)
+  #Update project settings
+  result = api_instance.update_project(opts)
   p result
 rescue Vouchery::ApiError => e
-  puts "Exception when calling TriggersApi->create_trigger: #{e}"
+  puts "Exception when calling ProjectsApi->update_project: #{e}"
 end
 ```
 
@@ -44,11 +44,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trigger** | [**Trigger**](Trigger.md)|  | [optional] 
+ **project** | [**Project**](Project.md)|  | [optional] 
 
 ### Return type
 
-[**Trigger**](Trigger.md)
+[**Project**](Project.md)
 
 ### Authorization
 

@@ -13,31 +13,31 @@ OpenAPI Generator version: 4.2.3
 require 'cgi'
 
 module Vouchery
-  class TriggersApi
+  class ProjectsApi
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Create a trigger
+    # Update project settings
     # @param [Hash] opts the optional parameters
-    # @option opts [Trigger] :trigger 
-    # @return [Trigger]
-    def create_trigger(opts = {})
-      data, _status_code, _headers = create_trigger_with_http_info(opts)
+    # @option opts [Project] :project 
+    # @return [Project]
+    def update_project(opts = {})
+      data, _status_code, _headers = update_project_with_http_info(opts)
       data
     end
 
-    # Create a trigger
+    # Update project settings
     # @param [Hash] opts the optional parameters
-    # @option opts [Trigger] :trigger 
-    # @return [Array<(Trigger, Integer, Hash)>] Trigger data, response status code and response headers
-    def create_trigger_with_http_info(opts = {})
+    # @option opts [Project] :project 
+    # @return [Array<(Project, Integer, Hash)>] Project data, response status code and response headers
+    def update_project_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TriggersApi.create_trigger ...'
+        @api_client.config.logger.debug 'Calling API: ProjectsApi.update_project ...'
       end
       # resource path
-      local_var_path = '/triggers'
+      local_var_path = '/project'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -53,10 +53,10 @@ module Vouchery
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(opts[:'trigger']) 
+      post_body = opts[:body] || @api_client.object_to_http_body(opts[:'project']) 
 
       # return_type
-      return_type = opts[:return_type] || 'Trigger' 
+      return_type = opts[:return_type] || 'Project' 
 
       # auth_names
       auth_names = opts[:auth_names] || ['Bearer']
@@ -70,9 +70,9 @@ module Vouchery
         :return_type => return_type
       )
 
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TriggersApi#create_trigger\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ProjectsApi#update_project\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

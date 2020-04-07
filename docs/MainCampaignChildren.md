@@ -1,4 +1,4 @@
-# Vouchery::Campaign
+# Vouchery::MainCampaignChildren
 
 ## Properties
 
@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 ```ruby
 require 'Vouchery'
 
-instance = Vouchery::Campaign.new(type: null,
+instance = Vouchery::MainCampaignChildren.new(type: null,
                                  id: null,
                                  parent_id: null,
                                  status: null,

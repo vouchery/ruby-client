@@ -16,8 +16,6 @@ module Vouchery
   class Voucher
     attr_accessor :type
 
-    attr_accessor :id
-
     attr_accessor :campaign_id
 
     attr_accessor :active
@@ -59,7 +57,6 @@ module Vouchery
     def self.attribute_map
       {
         :'type' => :'type',
-        :'id' => :'id',
         :'campaign_id' => :'campaign_id',
         :'active' => :'active',
         :'status' => :'status',
@@ -74,7 +71,6 @@ module Vouchery
     def self.openapi_types
       {
         :'type' => :'String',
-        :'id' => :'Integer',
         :'campaign_id' => :'Integer',
         :'active' => :'Boolean',
         :'status' => :'String',
@@ -108,10 +104,6 @@ module Vouchery
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
-      end
-
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
       end
 
       if attributes.key?(:'campaign_id')
@@ -201,7 +193,6 @@ module Vouchery
       return true if self.equal?(o)
       self.class == o.class &&
           type == o.type &&
-          id == o.id &&
           campaign_id == o.campaign_id &&
           active == o.active &&
           status == o.status &&
@@ -220,7 +211,7 @@ module Vouchery
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, id, campaign_id, active, status, code, customer_identifier, created_at, updated_at].hash
+      [type, campaign_id, active, status, code, customer_identifier, created_at, updated_at].hash
     end
 
     # Builds the object from hash

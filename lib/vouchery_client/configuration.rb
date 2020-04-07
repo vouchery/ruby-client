@@ -193,12 +193,12 @@ module Vouchery
     # Returns Auth Settings hash for api client.
     def auth_settings
       {
-        'Basic' =>
+        'Bearer' =>
           {
-            type: 'basic',
+            type: 'bearer',
             in: 'header',
             key: 'Authorization',
-            value: basic_auth_token
+            value: "Bearer #{access_token}"
           },
       }
     end

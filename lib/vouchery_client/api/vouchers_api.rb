@@ -67,7 +67,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Array<Voucher>' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -131,7 +131,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Voucher' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -191,7 +191,7 @@ module Vouchery
       return_type = opts[:return_type] 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -205,6 +205,68 @@ module Vouchery
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: VouchersApi#delete_voucher\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Expire a voucher
+    # Expire a voucher
+    # @param code [String] Voucher code
+    # @param [Hash] opts the optional parameters
+    # @return [Voucher]
+    def expire_voucher(code, opts = {})
+      data, _status_code, _headers = expire_voucher_with_http_info(code, opts)
+      data
+    end
+
+    # Expire a voucher
+    # Expire a voucher
+    # @param code [String] Voucher code
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Voucher, Integer, Hash)>] Voucher data, response status code and response headers
+    def expire_voucher_with_http_info(code, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: VouchersApi.expire_voucher ...'
+      end
+      # verify the required parameter 'code' is set
+      if @api_client.config.client_side_validation && code.nil?
+        fail ArgumentError, "Missing the required parameter 'code' when calling VouchersApi.expire_voucher"
+      end
+      # resource path
+      local_var_path = '/vouchers/{code}/expire'.sub('{' + 'code' + '}', CGI.escape(code.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'Voucher' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['Bearer']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: VouchersApi#expire_voucher\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -249,7 +311,7 @@ module Vouchery
       return_type = opts[:return_type] 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -320,7 +382,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Voucher' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -380,7 +442,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Voucher' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -440,7 +502,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Array<Voucher>' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -505,7 +567,7 @@ module Vouchery
       return_type = opts[:return_type] || 'InlineResponse200' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -519,72 +581,6 @@ module Vouchery
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: VouchersApi#import_vouchers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Update a voucher
-    # Only voucher status can be updated.
-    # @param code [String] Voucher code
-    # @param [Hash] opts the optional parameters
-    # @option opts [Voucher] :voucher 
-    # @return [Voucher]
-    def update_voucher(code, opts = {})
-      data, _status_code, _headers = update_voucher_with_http_info(code, opts)
-      data
-    end
-
-    # Update a voucher
-    # Only voucher status can be updated.
-    # @param code [String] Voucher code
-    # @param [Hash] opts the optional parameters
-    # @option opts [Voucher] :voucher 
-    # @return [Array<(Voucher, Integer, Hash)>] Voucher data, response status code and response headers
-    def update_voucher_with_http_info(code, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: VouchersApi.update_voucher ...'
-      end
-      # verify the required parameter 'code' is set
-      if @api_client.config.client_side_validation && code.nil?
-        fail ArgumentError, "Missing the required parameter 'code' when calling VouchersApi.update_voucher"
-      end
-      # resource path
-      local_var_path = '/vouchers/{code}'.sub('{' + 'code' + '}', CGI.escape(code.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(opts[:'voucher']) 
-
-      # return_type
-      return_type = opts[:return_type] || 'Voucher' 
-
-      # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
-
-      new_options = opts.merge(
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: VouchersApi#update_voucher\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

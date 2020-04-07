@@ -59,7 +59,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Category' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -117,7 +117,7 @@ module Vouchery
       return_type = opts[:return_type] 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -171,7 +171,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Array<Category>' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -231,7 +231,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Category' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -295,7 +295,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Category' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,

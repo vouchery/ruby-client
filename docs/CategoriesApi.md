@@ -25,9 +25,8 @@ Create a category
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CategoriesApi.new
@@ -57,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -78,9 +77,8 @@ Delete a category
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CategoriesApi.new
@@ -107,7 +105,7 @@ nil (empty response body)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -128,9 +126,8 @@ Get all categories for a campaign
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CategoriesApi.new
@@ -154,7 +151,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -175,9 +172,8 @@ Get a category
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CategoriesApi.new
@@ -205,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -226,9 +222,8 @@ Update a category
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::CategoriesApi.new
@@ -260,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 

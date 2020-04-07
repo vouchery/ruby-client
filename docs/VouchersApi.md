@@ -7,12 +7,12 @@ Method | HTTP request | Description
 [**batch_generate_vouchers**](VouchersApi.md#batch_generate_vouchers) | **POST** /campaigns/{id}/vouchers/batch | Batch create vouchers
 [**create_voucher**](VouchersApi.md#create_voucher) | **POST** /campaigns/{campaign_id}/vouchers | Create a voucher
 [**delete_voucher**](VouchersApi.md#delete_voucher) | **DELETE** /vouchers/{code} | Delete a voucher
+[**expire_voucher**](VouchersApi.md#expire_voucher) | **PATCH** /vouchers/{code}/expire | Expire a voucher
 [**expire_vouchers**](VouchersApi.md#expire_vouchers) | **POST** /campaigns/vouchers/expire | Expire a list of vouchers
 [**find_voucher**](VouchersApi.md#find_voucher) | **GET** /vouchers/find | Find a voucher by campaign metadata
 [**get_voucher**](VouchersApi.md#get_voucher) | **GET** /vouchers/{code} | Get a voucher
 [**get_vouchers**](VouchersApi.md#get_vouchers) | **GET** /campaigns/{campaign_id}/vouchers | Get all vouchers for a campaign
 [**import_vouchers**](VouchersApi.md#import_vouchers) | **POST** /campaigns/{id}/vouchers/import | Import your own vouchers
-[**update_voucher**](VouchersApi.md#update_voucher) | **PATCH** /vouchers/{code} | Update a voucher
 
 
 
@@ -31,9 +31,8 @@ Batch create vouchers
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -65,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -86,9 +85,8 @@ Create a voucher
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -120,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -143,9 +141,8 @@ Delete a single voucher. Vouchers with at least one confirmed redemption can not
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -172,12 +169,64 @@ nil (empty response body)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+
+## expire_voucher
+
+> Voucher expire_voucher(code)
+
+Expire a voucher
+
+Expire a voucher
+
+### Example
+
+```ruby
+# load the gem
+require 'vouchery_client'
+# setup authorization
+Vouchery.configure do |config|
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Vouchery::VouchersApi.new
+code = 'code_example' # String | Voucher code
+
+begin
+  #Expire a voucher
+  result = api_instance.expire_voucher(code)
+  p result
+rescue Vouchery::ApiError => e
+  puts "Exception when calling VouchersApi->expire_voucher: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **String**| Voucher code | 
+
+### Return type
+
+[**Voucher**](Voucher.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
 ## expire_vouchers
@@ -195,9 +244,8 @@ Given a list of voucher codes, change their status to expired, unless they have 
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -226,7 +274,7 @@ nil (empty response body)
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -249,9 +297,8 @@ Find a voucher by campaign metadata
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -289,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -310,9 +357,8 @@ Get a voucher
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -340,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -361,9 +407,8 @@ Get all vouchers for a campaign
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -391,7 +436,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -412,9 +457,8 @@ Import your own vouchers
 require 'vouchery_client'
 # setup authorization
 Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  # Configure Bearer authorization: Bearer
+  config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Vouchery::VouchersApi.new
@@ -446,67 +490,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Basic](../README.md#Basic)
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: multipart/form-data
-- **Accept**: application/json
-
-
-## update_voucher
-
-> Voucher update_voucher(code, opts)
-
-Update a voucher
-
-Only voucher status can be updated.
-
-### Example
-
-```ruby
-# load the gem
-require 'vouchery_client'
-# setup authorization
-Vouchery.configure do |config|
-  # Configure HTTP basic authorization: Basic
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = Vouchery::VouchersApi.new
-code = 'code_example' # String | Voucher code
-opts = {
-  voucher: Vouchery::Voucher.new # Voucher | 
-}
-
-begin
-  #Update a voucher
-  result = api_instance.update_voucher(code, opts)
-  p result
-rescue Vouchery::ApiError => e
-  puts "Exception when calling VouchersApi->update_voucher: #{e}"
-end
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **code** | **String**| Voucher code | 
- **voucher** | [**Voucher**](Voucher.md)|  | [optional] 
-
-### Return type
-
-[**Voucher**](Voucher.md)
-
-### Authorization
-
-[Basic](../README.md#Basic)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 

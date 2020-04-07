@@ -13,7 +13,7 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module Vouchery
-  class Campaign
+  class MainCampaignChildren
     # This field is required only when you create a campaign. Main Campaign is a wrapper for multipe Sub Campaings, grouped together. Main Campaign can have own budget and redemptions limit.
     attr_accessor :type
 
@@ -223,22 +223,17 @@ module Vouchery
       ])
     end
 
-    # discriminator's property name in OpenAPI v3
-    def self.openapi_discriminator_name
-      :'type'
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::Campaign` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::MainCampaignChildren` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::Campaign`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::MainCampaignChildren`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }

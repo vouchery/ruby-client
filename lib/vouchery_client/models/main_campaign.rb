@@ -13,16 +13,11 @@ OpenAPI Generator version: 4.2.3
 require 'date'
 
 module Vouchery
-  class Campaign
+  class MainCampaign
     # This field is required only when you create a campaign. Main Campaign is a wrapper for multipe Sub Campaings, grouped together. Main Campaign can have own budget and redemptions limit.
     attr_accessor :type
 
     attr_accessor :id
-
-    # Required only for subcampaigns.
-    attr_accessor :parent_id
-
-    attr_accessor :status
 
     # The name of the campaign must be unique.
     attr_accessor :name
@@ -33,13 +28,10 @@ module Vouchery
     # If campaign is triggered by custom trigger, it's name should be specified.
     attr_accessor :trigger_name
 
-    # Valid template values for MainCampaign are: discount, loyalty, gift_card. For SubCampaign valid templates are sub_redemption, sub_reward_points, sub_generate_vouchers.
+    # Valid template values for MainCampaign are: discount, loyalty, gift_card.
     attr_accessor :template
 
     attr_accessor :description
-
-    # Text that can be displayed to the customer once the redemption is validated or confirmed.
-    attr_accessor :customer_information
 
     # The budget available for all discount campaigns grouped by this campaign.
     attr_accessor :max_total_budget
@@ -47,45 +39,12 @@ module Vouchery
     # The maximum number of redemptions available across all discount campaigns grouped by this campaign.
     attr_accessor :max_redemptions
 
-    attr_accessor :minimum_value
-
-    attr_accessor :max_discount
-
-    attr_accessor :redemptions_count
-
-    attr_accessor :total_budget_spent
-
-    attr_accessor :vouchers_distributed_count
-
-    attr_accessor :vouchers_count
-
-    # Currency denominating monetary values in this campaign (USD, GBP, EUR, AUD)
-    attr_accessor :currency
-
-    # Currency symbol ($, £, €)
-    attr_accessor :currency_symbol
-
     attr_accessor :team
-
-    attr_accessor :channel
-
-    attr_accessor :purpose
 
     attr_accessor :budget_code
 
-    attr_accessor :medium
-
-    # Determines what type of vouchers can be generated for campaign. Generic vouchers (eg. SALE10) can be redeemed multiple times. Unique vouchers allow for greater control and better tracking of who and how is using your promotions.
-    attr_accessor :voucher_type
-
-    # What characters should the code include when new voucher is created. Possible choices are digits, letters, and mixed.
-    attr_accessor :voucher_code_type
-
-    # How long should the random part of the code be? Valid values are between 2 and 10, depending on batch size.
-    attr_accessor :voucher_random_part_length
-
-    # A prefix that will be used to generate vouchers. Needs to be unique within project.
-    attr_accessor :voucher_prefix
+    # List of child campaigns
+    attr_accessor :children
 
     attr_accessor :created_at
 
@@ -122,33 +81,16 @@ module Vouchery
       {
         :'type' => :'type',
         :'id' => :'id',
-        :'parent_id' => :'parent_id',
-        :'status' => :'status',
         :'name' => :'name',
         :'triggers_on' => :'triggers_on',
         :'trigger_name' => :'trigger_name',
         :'template' => :'template',
         :'description' => :'description',
-        :'customer_information' => :'customer_information',
         :'max_total_budget' => :'max_total_budget',
         :'max_redemptions' => :'max_redemptions',
-        :'minimum_value' => :'minimum_value',
-        :'max_discount' => :'max_discount',
-        :'redemptions_count' => :'redemptions_count',
-        :'total_budget_spent' => :'total_budget_spent',
-        :'vouchers_distributed_count' => :'vouchers_distributed_count',
-        :'vouchers_count' => :'vouchers_count',
-        :'currency' => :'currency',
-        :'currency_symbol' => :'currency_symbol',
         :'team' => :'team',
-        :'channel' => :'channel',
-        :'purpose' => :'purpose',
         :'budget_code' => :'budget_code',
-        :'medium' => :'medium',
-        :'voucher_type' => :'voucher_type',
-        :'voucher_code_type' => :'voucher_code_type',
-        :'voucher_random_part_length' => :'voucher_random_part_length',
-        :'voucher_prefix' => :'voucher_prefix',
+        :'children' => :'children',
         :'created_at' => :'created_at',
         :'created_by' => :'created_by',
         :'updated_at' => :'updated_at',
@@ -161,33 +103,16 @@ module Vouchery
       {
         :'type' => :'String',
         :'id' => :'Integer',
-        :'parent_id' => :'Integer',
-        :'status' => :'String',
         :'name' => :'String',
         :'triggers_on' => :'String',
         :'trigger_name' => :'String',
         :'template' => :'String',
         :'description' => :'String',
-        :'customer_information' => :'String',
         :'max_total_budget' => :'Float',
         :'max_redemptions' => :'Float',
-        :'minimum_value' => :'Float',
-        :'max_discount' => :'Float',
-        :'redemptions_count' => :'Float',
-        :'total_budget_spent' => :'Float',
-        :'vouchers_distributed_count' => :'Integer',
-        :'vouchers_count' => :'Integer',
-        :'currency' => :'String',
-        :'currency_symbol' => :'String',
         :'team' => :'String',
-        :'channel' => :'String',
-        :'purpose' => :'String',
         :'budget_code' => :'String',
-        :'medium' => :'String',
-        :'voucher_type' => :'String',
-        :'voucher_code_type' => :'String',
-        :'voucher_random_part_length' => :'Float',
-        :'voucher_prefix' => :'String',
+        :'children' => :'Array<MainCampaignChildren>',
         :'created_at' => :'DateTime',
         :'created_by' => :'CampaignCreatedBy',
         :'updated_at' => :'DateTime',
@@ -202,24 +127,11 @@ module Vouchery
         :'triggers_on',
         :'trigger_name',
         :'description',
-        :'customer_information',
         :'max_total_budget',
         :'max_redemptions',
-        :'minimum_value',
-        :'max_discount',
-        :'redemptions_count',
-        :'total_budget_spent',
-        :'vouchers_distributed_count',
-        :'vouchers_count',
         :'team',
-        :'channel',
-        :'purpose',
         :'budget_code',
-        :'medium',
-        :'voucher_type',
-        :'voucher_code_type',
-        :'voucher_random_part_length',
-        :'voucher_prefix',
+        :'children',
       ])
     end
 
@@ -232,13 +144,13 @@ module Vouchery
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::Campaign` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Vouchery::MainCampaign` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::Campaign`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Vouchery::MainCampaign`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -249,14 +161,6 @@ module Vouchery
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
-      end
-
-      if attributes.key?(:'parent_id')
-        self.parent_id = attributes[:'parent_id']
-      end
-
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
       end
 
       if attributes.key?(:'name')
@@ -279,10 +183,6 @@ module Vouchery
         self.description = attributes[:'description']
       end
 
-      if attributes.key?(:'customer_information')
-        self.customer_information = attributes[:'customer_information']
-      end
-
       if attributes.key?(:'max_total_budget')
         self.max_total_budget = attributes[:'max_total_budget']
       end
@@ -291,72 +191,18 @@ module Vouchery
         self.max_redemptions = attributes[:'max_redemptions']
       end
 
-      if attributes.key?(:'minimum_value')
-        self.minimum_value = attributes[:'minimum_value']
-      end
-
-      if attributes.key?(:'max_discount')
-        self.max_discount = attributes[:'max_discount']
-      end
-
-      if attributes.key?(:'redemptions_count')
-        self.redemptions_count = attributes[:'redemptions_count']
-      end
-
-      if attributes.key?(:'total_budget_spent')
-        self.total_budget_spent = attributes[:'total_budget_spent']
-      end
-
-      if attributes.key?(:'vouchers_distributed_count')
-        self.vouchers_distributed_count = attributes[:'vouchers_distributed_count']
-      end
-
-      if attributes.key?(:'vouchers_count')
-        self.vouchers_count = attributes[:'vouchers_count']
-      end
-
-      if attributes.key?(:'currency')
-        self.currency = attributes[:'currency']
-      end
-
-      if attributes.key?(:'currency_symbol')
-        self.currency_symbol = attributes[:'currency_symbol']
-      end
-
       if attributes.key?(:'team')
         self.team = attributes[:'team']
-      end
-
-      if attributes.key?(:'channel')
-        self.channel = attributes[:'channel']
-      end
-
-      if attributes.key?(:'purpose')
-        self.purpose = attributes[:'purpose']
       end
 
       if attributes.key?(:'budget_code')
         self.budget_code = attributes[:'budget_code']
       end
 
-      if attributes.key?(:'medium')
-        self.medium = attributes[:'medium']
-      end
-
-      if attributes.key?(:'voucher_type')
-        self.voucher_type = attributes[:'voucher_type']
-      end
-
-      if attributes.key?(:'voucher_code_type')
-        self.voucher_code_type = attributes[:'voucher_code_type']
-      end
-
-      if attributes.key?(:'voucher_random_part_length')
-        self.voucher_random_part_length = attributes[:'voucher_random_part_length']
-      end
-
-      if attributes.key?(:'voucher_prefix')
-        self.voucher_prefix = attributes[:'voucher_prefix']
+      if attributes.key?(:'children')
+        if (value = attributes[:'children']).is_a?(Array)
+          self.children = value
+        end
       end
 
       if attributes.key?(:'created_at')
@@ -384,18 +230,6 @@ module Vouchery
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if @parent_id.nil?
-        invalid_properties.push('invalid value for "parent_id", parent_id cannot be nil.')
-      end
-
-      if !@voucher_random_part_length.nil? && @voucher_random_part_length > 10
-        invalid_properties.push('invalid value for "voucher_random_part_length", must be smaller than or equal to 10.')
-      end
-
-      if !@voucher_random_part_length.nil? && @voucher_random_part_length < 3
-        invalid_properties.push('invalid value for "voucher_random_part_length", must be greater than or equal to 3.')
-      end
-
       invalid_properties
     end
 
@@ -403,42 +237,23 @@ module Vouchery
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
-      type_validator = EnumAttributeValidator.new('String', ["MainCampaign", "SubCampaign"])
+      type_validator = EnumAttributeValidator.new('String', ["MainCampaign"])
       return false unless type_validator.valid?(@type)
-      return false if @parent_id.nil?
-      status_validator = EnumAttributeValidator.new('String', ["draft", "active", "inactive", "archived"])
-      return false unless status_validator.valid?(@status)
       triggers_on_validator = EnumAttributeValidator.new('String', ["customer_points_change", "redemption", "custom"])
       return false unless triggers_on_validator.valid?(@triggers_on)
-      template_validator = EnumAttributeValidator.new('String', ["discount", "loyalty", "gift_card", "sub_redemption", "sub_reward_points", "sub_generate_vouchers"])
+      template_validator = EnumAttributeValidator.new('String', ["discount", "loyalty", "gift_card"])
       return false unless template_validator.valid?(@template)
-      voucher_type_validator = EnumAttributeValidator.new('String', ["unique", "generic"])
-      return false unless voucher_type_validator.valid?(@voucher_type)
-      voucher_code_type_validator = EnumAttributeValidator.new('String', ["digits", "letters", "mixed"])
-      return false unless voucher_code_type_validator.valid?(@voucher_code_type)
-      return false if !@voucher_random_part_length.nil? && @voucher_random_part_length > 10
-      return false if !@voucher_random_part_length.nil? && @voucher_random_part_length < 3
       true
     end
 
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["MainCampaign", "SubCampaign"])
+      validator = EnumAttributeValidator.new('String', ["MainCampaign"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
       @type = type
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ["draft", "active", "inactive", "archived"])
-      unless validator.valid?(status)
-        fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
-      end
-      @status = status
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -454,45 +269,11 @@ module Vouchery
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] template Object to be assigned
     def template=(template)
-      validator = EnumAttributeValidator.new('String', ["discount", "loyalty", "gift_card", "sub_redemption", "sub_reward_points", "sub_generate_vouchers"])
+      validator = EnumAttributeValidator.new('String', ["discount", "loyalty", "gift_card"])
       unless validator.valid?(template)
         fail ArgumentError, "invalid value for \"template\", must be one of #{validator.allowable_values}."
       end
       @template = template
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] voucher_type Object to be assigned
-    def voucher_type=(voucher_type)
-      validator = EnumAttributeValidator.new('String', ["unique", "generic"])
-      unless validator.valid?(voucher_type)
-        fail ArgumentError, "invalid value for \"voucher_type\", must be one of #{validator.allowable_values}."
-      end
-      @voucher_type = voucher_type
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] voucher_code_type Object to be assigned
-    def voucher_code_type=(voucher_code_type)
-      validator = EnumAttributeValidator.new('String', ["digits", "letters", "mixed"])
-      unless validator.valid?(voucher_code_type)
-        fail ArgumentError, "invalid value for \"voucher_code_type\", must be one of #{validator.allowable_values}."
-      end
-      @voucher_code_type = voucher_code_type
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] voucher_random_part_length Value to be assigned
-    def voucher_random_part_length=(voucher_random_part_length)
-      if !voucher_random_part_length.nil? && voucher_random_part_length > 10
-        fail ArgumentError, 'invalid value for "voucher_random_part_length", must be smaller than or equal to 10.'
-      end
-
-      if !voucher_random_part_length.nil? && voucher_random_part_length < 3
-        fail ArgumentError, 'invalid value for "voucher_random_part_length", must be greater than or equal to 3.'
-      end
-
-      @voucher_random_part_length = voucher_random_part_length
     end
 
     # Checks equality by comparing each attribute.
@@ -502,33 +283,16 @@ module Vouchery
       self.class == o.class &&
           type == o.type &&
           id == o.id &&
-          parent_id == o.parent_id &&
-          status == o.status &&
           name == o.name &&
           triggers_on == o.triggers_on &&
           trigger_name == o.trigger_name &&
           template == o.template &&
           description == o.description &&
-          customer_information == o.customer_information &&
           max_total_budget == o.max_total_budget &&
           max_redemptions == o.max_redemptions &&
-          minimum_value == o.minimum_value &&
-          max_discount == o.max_discount &&
-          redemptions_count == o.redemptions_count &&
-          total_budget_spent == o.total_budget_spent &&
-          vouchers_distributed_count == o.vouchers_distributed_count &&
-          vouchers_count == o.vouchers_count &&
-          currency == o.currency &&
-          currency_symbol == o.currency_symbol &&
           team == o.team &&
-          channel == o.channel &&
-          purpose == o.purpose &&
           budget_code == o.budget_code &&
-          medium == o.medium &&
-          voucher_type == o.voucher_type &&
-          voucher_code_type == o.voucher_code_type &&
-          voucher_random_part_length == o.voucher_random_part_length &&
-          voucher_prefix == o.voucher_prefix &&
+          children == o.children &&
           created_at == o.created_at &&
           created_by == o.created_by &&
           updated_at == o.updated_at &&
@@ -544,7 +308,7 @@ module Vouchery
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, id, parent_id, status, name, triggers_on, trigger_name, template, description, customer_information, max_total_budget, max_redemptions, minimum_value, max_discount, redemptions_count, total_budget_spent, vouchers_distributed_count, vouchers_count, currency, currency_symbol, team, channel, purpose, budget_code, medium, voucher_type, voucher_code_type, voucher_random_part_length, voucher_prefix, created_at, created_by, updated_at, updated_by].hash
+      [type, id, name, triggers_on, trigger_name, template, description, max_total_budget, max_redemptions, team, budget_code, children, created_at, created_by, updated_at, updated_by].hash
     end
 
     # Builds the object from hash

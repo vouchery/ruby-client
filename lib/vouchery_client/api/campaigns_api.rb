@@ -59,7 +59,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Campaign' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -117,7 +117,7 @@ module Vouchery
       return_type = opts[:return_type] 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -186,7 +186,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Array<Campaign>' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -246,7 +246,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Campaign' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -312,7 +312,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Array<Campaign>' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,
@@ -326,6 +326,132 @@ module Vouchery
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: CampaignsApi#get_campaigns\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get a main campaign
+    # @param id [Integer] Campaign ID
+    # @param [Hash] opts the optional parameters
+    # @return [MainCampaign]
+    def get_main_campaign(id, opts = {})
+      data, _status_code, _headers = get_main_campaign_with_http_info(id, opts)
+      data
+    end
+
+    # Get a main campaign
+    # @param id [Integer] Campaign ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(MainCampaign, Integer, Hash)>] MainCampaign data, response status code and response headers
+    def get_main_campaign_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_main_campaign ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_main_campaign"
+      end
+      # resource path
+      local_var_path = '/main_campaigns/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'MainCampaign' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['Bearer']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_main_campaign\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get main campaigns with children by params
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :name_cont Name contains
+    # @option opts [String] :team_eq Teaml
+    # @option opts [String] :status_eq Status
+    # @option opts [String] :template_eq Template (promotion type) of main campaign
+    # @return [Array<MainCampaign>]
+    def get_main_campaigns(opts = {})
+      data, _status_code, _headers = get_main_campaigns_with_http_info(opts)
+      data
+    end
+
+    # Get main campaigns with children by params
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :name_cont Name contains
+    # @option opts [String] :team_eq Teaml
+    # @option opts [String] :status_eq Status
+    # @option opts [String] :template_eq Template (promotion type) of main campaign
+    # @return [Array<(Array<MainCampaign>, Integer, Hash)>] Array<MainCampaign> data, response status code and response headers
+    def get_main_campaigns_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_main_campaigns ...'
+      end
+      # resource path
+      local_var_path = '/main_campaigns'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'name_cont'] = opts[:'name_cont'] if !opts[:'name_cont'].nil?
+      query_params[:'team_eq'] = opts[:'team_eq'] if !opts[:'team_eq'].nil?
+      query_params[:'status_eq'] = opts[:'status_eq'] if !opts[:'status_eq'].nil?
+      query_params[:'template_eq'] = opts[:'template_eq'] if !opts[:'template_eq'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'Array<MainCampaign>' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['Bearer']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_main_campaigns\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -376,7 +502,7 @@ module Vouchery
       return_type = opts[:return_type] || 'Campaign' 
 
       # auth_names
-      auth_names = opts[:auth_names] || ['Basic']
+      auth_names = opts[:auth_names] || ['Bearer']
 
       new_options = opts.merge(
         :header_params => header_params,

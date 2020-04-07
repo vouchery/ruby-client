@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** |  | 
-**id** | **Integer** |  | [optional] [readonly] 
 **campaign_id** | **Integer** |  | [optional] [readonly] 
 **active** | **Boolean** |  | [readonly] 
 **status** | **String** |  | [optional] 
@@ -20,7 +19,6 @@ Name | Type | Description | Notes
 require 'Vouchery'
 
 instance = Vouchery::Voucher.new(type: null,
-                                 id: null,
                                  campaign_id: null,
                                  active: null,
                                  status: null,

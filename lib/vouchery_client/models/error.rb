@@ -117,7 +117,7 @@ module Vouchery
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      code_validator = EnumAttributeValidator.new('String', ["invalid", "not_found", "not_authorized", "forbidden", "can_not_be_deleted", "unknown_error"])
+      code_validator = EnumAttributeValidator.new('String', ["invalid", "not_found", "not_authorized", "forbidden", "can_not_be_deleted", "unknown_attribute", "invalid_type", "unknown_error"])
       return false unless code_validator.valid?(@code)
       true
     end
@@ -125,7 +125,7 @@ module Vouchery
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] code Object to be assigned
     def code=(code)
-      validator = EnumAttributeValidator.new('String', ["invalid", "not_found", "not_authorized", "forbidden", "can_not_be_deleted", "unknown_error"])
+      validator = EnumAttributeValidator.new('String', ["invalid", "not_found", "not_authorized", "forbidden", "can_not_be_deleted", "unknown_attribute", "invalid_type", "unknown_error"])
       unless validator.valid?(code)
         fail ArgumentError, "invalid value for \"code\", must be one of #{validator.allowable_values}."
       end
